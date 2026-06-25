@@ -18,6 +18,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Bem vindo ao Bento Bank.\n");
         while (true) {
+            clearScreen();
             System.out.print("1. Ver saldo\n2. Depositar dinheiro\n3. Sacar dinheiro\n4. Sair\n\n");
             System.out.println("Selecione uma opção: ");
 
@@ -37,6 +38,14 @@ public class Main {
                 clearScreen();
                 System.out.println("Qual valor deseja depositar?");
                 double amount = scanner.nextDouble();
+
+                if (amount <= 0) {
+                    System.out.println("Erro: Digite um valor positivo!");
+                    TimeUnit.SECONDS.sleep(3);
+                    clearScreen();
+                    continue;
+                }
+
                 balance += amount;
                 clearScreen();
 
@@ -51,6 +60,14 @@ public class Main {
                 clearScreen();
                 System.out.println("Qual valor deseja sacar?");
                 double amount = scanner.nextDouble();
+
+                if (amount > balance) {
+                    System.out.println("Erro: Saldo insuficiente!");
+                    TimeUnit.SECONDS.sleep(3);
+                    clearScreen();
+                    continue;
+                }
+
                 balance -= amount;
                 clearScreen();
 
